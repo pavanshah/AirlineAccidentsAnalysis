@@ -9,6 +9,7 @@ var mongo = require("./routes/mongo");
 var index = require('./routes/index');
 var users = require('./routes/users');
 var methodOverride = require('method-override');
+var data = require("./routes/data");
 
 var mongoSessionConnectURL = "mongodb://pavan:pavan@ds229435.mlab.com:29435/airlineaccidents";
 
@@ -28,8 +29,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/users', users);
+//all requests
+app.get('/', data.getAllData);
+app.get('/getAllData', data.getAllData);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -48,7 +50,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 
 //connect to the mongo collection session and then createServer
 mongo.connect(mongoSessionConnectURL, function(){
