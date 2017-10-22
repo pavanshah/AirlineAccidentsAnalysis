@@ -30,8 +30,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //all requests
-app.get('/', data.getAllData);
+app.get('/', index.displayIndex);
 app.get('/getAllData', data.getAllData);
+app.get('/getCountryAndCountData', data.getCountryAndCountData);
+app.get('/getTimeAndCountData', data.getTimeAndCountData);
+app.get('/getPurposeAndCountData', data.getPurposeAndCountData);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
