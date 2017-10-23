@@ -32,9 +32,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 //all requests
 app.get('/', index.displayIndex);
 app.get('/getAllData', data.getAllData);
-app.get('/getCountryAndCountData', data.getCountryAndCountData);
-app.get('/getTimeAndCountData', data.getTimeAndCountData);
-app.get('/getPurposeAndCountData', data.getPurposeAndCountData);
+app.post('/getCountryAndCountData', data.getCountryAndCountData);
+app.post('/getTimeAndCountData', data.getTimeAndCountData);
+app.post('/getPurposeAndCountData', data.getPurposeAndCountData);
+app.post('/getAircraftCategoryAndCountData', data.getAircraftCategoryAndCountData);
+app.post('/getNumberOfEnginesAndCountData', data.getNumberOfEnginesAndCountData);
+app.post('/getEngineTypeAndCountData', data.getEngineTypeAndCountData);
+app.post('/getBroadPhaseOfFlightAndCountData', data.getBroadPhaseOfFlightAndCountData);
+app.post('/getLatitudeAndLongitudeData', data.getLatitudeAndLongitudeData);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
