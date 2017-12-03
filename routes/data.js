@@ -33,6 +33,7 @@ exports.getCountryAndCountData = function(req, res)
 	console.log("getCountryAndCountData");
 
 	var json_responses = {};
+	var resultHashMap = {};
 	
 	mongo.connect(mongoSessionConnectURL, function(connection){
 		console.log('Connected to mongo at: ' + mongoSessionConnectURL);
@@ -42,7 +43,30 @@ exports.getCountryAndCountData = function(req, res)
 			
 			if (data) 
 			{
-				json_responses = {"data" : data};
+
+				for(var i = 0 ; i < data.length ; i++)
+				{
+					if(resultHashMap[data[i].Country])
+					{
+						resultHashMap[data[i].Country]++;
+					}
+					else
+					{
+						resultHashMap[data[i].Country] = 1;
+					}
+				}
+
+				var keySet = Object.keys(resultHashMap);
+
+				for(var j = 0 ; j < keySet.length ; j++)
+				{
+					var resultObject = {};
+					resultObject.label = keySet[j];
+					resultObject.value = resultHashMap[keySet[j]]
+					result.push(resultObject);
+				}
+
+				json_responses = result;
 				res.send(json_responses);
 			} 
 			
@@ -86,6 +110,8 @@ exports.getPurposeAndCountData = function(req, res)
 	console.log("getPurposeAndCountData");
 
 	var json_responses = {};
+	var resultHashMap = {};
+	var result = [];
 	
 	mongo.connect(mongoSessionConnectURL, function(connection){
 		console.log('Connected to mongo at: ' + mongoSessionConnectURL);
@@ -95,7 +121,30 @@ exports.getPurposeAndCountData = function(req, res)
 			
 			if (data) 
 			{
-				json_responses = {"data" : data};
+				for(var i = 0 ; i < data.length ; i++)
+				{
+					if(resultHashMap[data[i].PurposeOfFlight])
+					{
+						resultHashMap[data[i].PurposeOfFlight]++;
+					}
+					else
+					{
+						resultHashMap[data[i].PurposeOfFlight] = 1;
+					}
+				}
+
+
+				var keySet = Object.keys(resultHashMap);
+
+				for(var j = 0 ; j < keySet.length ; j++)
+				{
+					var resultObject = {};
+					resultObject.label = keySet[j];
+					resultObject.value = resultHashMap[keySet[j]]
+					result.push(resultObject);
+				}
+
+				json_responses = result;
 				res.send(json_responses);
 			} 
 			
@@ -113,6 +162,8 @@ exports.getAircraftCategoryAndCountData = function(req, res)
 	console.log("getAircraftCategoryAndCountData");
 
 	var json_responses = {};
+	var resultHashMap = {};
+	var result = [];
 	
 	mongo.connect(mongoSessionConnectURL, function(connection){
 		console.log('Connected to mongo at: ' + mongoSessionConnectURL);
@@ -122,7 +173,30 @@ exports.getAircraftCategoryAndCountData = function(req, res)
 			
 			if (data) 
 			{
-				json_responses = {"data" : data};
+				for(var i = 0 ; i < data.length ; i++)
+				{
+					if(resultHashMap[data[i].AircraftCategory])
+					{
+						resultHashMap[data[i].AircraftCategory]++;
+					}
+					else
+					{
+						resultHashMap[data[i].AircraftCategory] = 1;
+					}
+				}
+
+
+				var keySet = Object.keys(resultHashMap);
+
+				for(var j = 0 ; j < keySet.length ; j++)
+				{
+					var resultObject = {};
+					resultObject.label = keySet[j];
+					resultObject.value = resultHashMap[keySet[j]]
+					result.push(resultObject);
+				}
+
+				json_responses = result;
 				res.send(json_responses);
 			} 
 			
@@ -140,6 +214,8 @@ exports.getNumberOfEnginesAndCountData = function(req, res)
 	console.log("getNumberOfEnginesAndCountData");
 
 	var json_responses = {};
+	var resultHashMap = {};
+	var result = [];
 	
 	mongo.connect(mongoSessionConnectURL, function(connection){
 		console.log('Connected to mongo at: ' + mongoSessionConnectURL);
@@ -149,7 +225,30 @@ exports.getNumberOfEnginesAndCountData = function(req, res)
 			
 			if (data) 
 			{
-				json_responses = {"data" : data};
+				for(var i = 0 ; i < data.length ; i++)
+				{
+					if(resultHashMap[data[i].NumberOfEngines])
+					{
+						resultHashMap[data[i].NumberOfEngines]++;
+					}
+					else
+					{
+						resultHashMap[data[i].NumberOfEngines] = 1;
+					}
+				}
+
+
+				var keySet = Object.keys(resultHashMap);
+
+				for(var j = 0 ; j < keySet.length ; j++)
+				{
+					var resultObject = {};
+					resultObject.label = keySet[j];
+					resultObject.value = resultHashMap[keySet[j]]
+					result.push(resultObject);
+				}
+
+				json_responses = result;
 				res.send(json_responses);
 			} 
 			
@@ -167,7 +266,9 @@ exports.getEngineTypeAndCountData = function(req, res)
 	console.log("getEngineTypeAndCountData");
 
 	var json_responses = {};
-	
+	var resultHashMap = {};
+	var result = [];
+
 	mongo.connect(mongoSessionConnectURL, function(connection){
 		console.log('Connected to mongo at: ' + mongoSessionConnectURL);
 		var coll = mongo.collection('AirlineData');		//collection data in coll
@@ -176,7 +277,30 @@ exports.getEngineTypeAndCountData = function(req, res)
 			
 			if (data) 
 			{
-				json_responses = {"data" : data};
+				for(var i = 0 ; i < data.length ; i++)
+				{
+					if(resultHashMap[data[i].EngineType])
+					{
+						resultHashMap[data[i].EngineType]++;
+					}
+					else
+					{
+						resultHashMap[data[i].EngineType] = 1;
+					}
+				}
+
+
+				var keySet = Object.keys(resultHashMap);
+
+				for(var j = 0 ; j < keySet.length ; j++)
+				{
+					var resultObject = {};
+					resultObject.label = keySet[j];
+					resultObject.value = resultHashMap[keySet[j]]
+					result.push(resultObject);
+				}
+
+				json_responses = result;
 				res.send(json_responses);
 			} 
 			
@@ -194,6 +318,8 @@ exports.getBroadPhaseOfFlightAndCountData = function(req, res)
 	console.log("getBroadPhaseOfFlightAndCountData");
 
 	var json_responses = {};
+	var resultHashMap = {};
+	var result = [];
 	
 	mongo.connect(mongoSessionConnectURL, function(connection){
 		console.log('Connected to mongo at: ' + mongoSessionConnectURL);
@@ -203,8 +329,34 @@ exports.getBroadPhaseOfFlightAndCountData = function(req, res)
 			
 			if (data) 
 			{
-				json_responses = {"data" : data};
+				
+				for(var i = 0 ; i < data.length ; i++)
+				{
+					if(resultHashMap[data[i].BroadPhaseOfFlight])
+					{
+						resultHashMap[data[i].BroadPhaseOfFlight]++;
+					}
+					else
+					{
+						resultHashMap[data[i].BroadPhaseOfFlight] = 1;
+					}
+				}
+
+
+				var keySet = Object.keys(resultHashMap);
+
+				for(var j = 0 ; j < keySet.length ; j++)
+				{
+					var resultObject = {};
+					resultObject.label = keySet[j];
+					resultObject.value = resultHashMap[keySet[j]]
+					result.push(resultObject);
+				}
+
+				json_responses = result;
 				res.send(json_responses);
+
+
 			} 
 			
 			else 
@@ -283,7 +435,7 @@ exports.getSafetySuggestion = function(req, res)
 			
 			if (data) 
 			{
-				json_responses = {"data" : data};
+				json_responses.value = data.length;
 				res.send(json_responses);
 			} 
 			
