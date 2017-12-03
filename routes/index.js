@@ -3,5 +3,5 @@ var express = require('express');
 /* GET home page. */
 exports.displayIndex = function(req, res)
 {
-	res.render('index', { title: 'Express' });
+	res.render('index');
 };

@@ -32,14 +32,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 //all requests
 app.get('/', index.displayIndex);
 app.get('/getAllData', data.getAllData);
-app.post('/getCountryAndCountData', data.getCountryAndCountData);
-app.post('/getTimeAndCountData', data.getTimeAndCountData);
-app.post('/getPurposeAndCountData', data.getPurposeAndCountData);
-app.post('/getAircraftCategoryAndCountData', data.getAircraftCategoryAndCountData);
-app.post('/getNumberOfEnginesAndCountData', data.getNumberOfEnginesAndCountData);
-app.post('/getEngineTypeAndCountData', data.getEngineTypeAndCountData);
-app.post('/getBroadPhaseOfFlightAndCountData', data.getBroadPhaseOfFlightAndCountData);
-app.post('/getLatitudeAndLongitudeData', data.getLatitudeAndLongitudeData);
+app.get('/getCountryAndCountData', data.getCountryAndCountData);
+app.get('/getTimeAndCountData', data.getTimeAndCountData);
+app.get('/getPurposeAndCountData', data.getPurposeAndCountData);
+app.get('/getAircraftCategoryAndCountData', data.getAircraftCategoryAndCountData);
+app.get('/getNumberOfEnginesAndCountData', data.getNumberOfEnginesAndCountData);
+app.get('/getEngineTypeAndCountData', data.getEngineTypeAndCountData);
+app.get('/getBroadPhaseOfFlightAndCountData', data.getBroadPhaseOfFlightAndCountData);
+app.get('/getLatitudeAndLongitudeData', data.getLatitudeAndLongitudeData);
+app.post('/getSafetySuggestion', data.getSafetySuggestion);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

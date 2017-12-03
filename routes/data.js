@@ -241,3 +241,58 @@ exports.getLatitudeAndLongitudeData = function(req, res)
 		});
 	});
 };
+
+
+exports.getSafetySuggestion = function(req, res)
+{
+
+	var request_json = req.body;
+	console.log("getSafetySuggestion "+request_json);
+
+	var Country = request_json.Country;
+	var AirportCode = request_json.AirportCode;
+	var Month = request_json.Month;
+
+	var MonthToNumber = {
+		"January" : 1,
+		"February" : 2,
+		"March" : 3,
+		"April" : 4,
+		"May" : 5,
+		"June" : 6,
+		"July" : 7,
+		"August" : 8,
+		"September" : 9,
+		"October" : 10,
+		"November" : 11,
+		"December" : 12
+
+	};
+
+	var MonthNumber = MonthToNumber[Month];
+
+	console.log("MonthNumber "+MonthNumber);
+
+	var json_responses = {};
+	
+	mongo.connect(mongoSessionConnectURL, function(connection){
+		console.log('Connected to mongo at: ' + mongoSessionConnectURL);
+		var coll = mongo.collection('AirlineData');		//collection data in coll
+
+		coll.find({Country : Country, AirportCode : AirportCode, EventDate : {$regex : "^" + MonthNumber} }).toArray(function(err, data){	//retrive data
+			
+			if (data) 
+			{
+				json_responses = {"data" : data};
+				res.send(json_responses);
+			} 
+			
+			else 
+			{
+				console.log("Error in data");
+			}
+		});
+	});
+
+
+}
