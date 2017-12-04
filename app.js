@@ -31,6 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //all requests
 app.get('/', index.displayIndex);
+app.get('/dashboard', index.displayIndex);
+app.get('/user', index.displaySuggestions);
+
 app.get('/getAllData', data.getAllData);
 app.get('/getCountryAndCountData', data.getCountryAndCountData);
 app.get('/getTimeAndCountData', data.getTimeAndCountData);

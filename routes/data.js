@@ -34,6 +34,7 @@ exports.getCountryAndCountData = function(req, res)
 
 	var json_responses = {};
 	var resultHashMap = {};
+	var result = [];
 	
 	mongo.connect(mongoSessionConnectURL, function(connection){
 		console.log('Connected to mongo at: ' + mongoSessionConnectURL);
@@ -53,10 +54,11 @@ exports.getCountryAndCountData = function(req, res)
 					else
 					{
 						resultHashMap[data[i].Country] = 1;
+						result.push(data[i].Country);
 					}
 				}
 
-				var keySet = Object.keys(resultHashMap);
+				/*var keySet = Object.keys(resultHashMap);
 
 				for(var j = 0 ; j < keySet.length ; j++)
 				{
@@ -64,7 +66,7 @@ exports.getCountryAndCountData = function(req, res)
 					resultObject.label = keySet[j];
 					resultObject.value = resultHashMap[keySet[j]]
 					result.push(resultObject);
-				}
+				}*/
 
 				json_responses = result;
 				res.send(json_responses);
@@ -423,6 +425,8 @@ exports.getSafetySuggestion = function(req, res)
 
 	var MonthNumber = MonthToNumber[Month];
 
+	console.log("Country "+Country);
+	console.log("AirportCode "+AirportCode);
 	console.log("MonthNumber "+MonthNumber);
 
 	var json_responses = {};
